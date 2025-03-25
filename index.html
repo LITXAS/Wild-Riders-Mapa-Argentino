@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Buscador de rutas con mapas interactivos">
+    <title>Wild Riders | Mapa Argentino</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@latest/ol.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Menú hamburguesa simplificado -->
+    <input type="checkbox" id="checkbox">
+    <label for="checkbox" class="toggle">
+        <div class="bars" id="bar1"></div>
+        <div class="bars" id="bar2"></div>
+        <div class="bars" id="bar3"></div>
+    </label>
+    
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#" class="active">Inicio</a></li>
+            <li><a href="menu/rastreo.html">Adherir dispositivo de rastreo</a></li>
+            <li><a href="#">Soporte Tecnico</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <h1 class="sr-only">Buscador de Rutas</h1>
+        <h2 aria-hidden="true">Seleccione Su Destino</h2>
+        
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="destination" 
+                placeholder="Destino (Ej. CABA)"
+                aria-label="Ingrese su destino"
+            >
+            <button onclick="searchRoute()" aria-label="Buscar ruta">
+                Buscar Ruta
+            </button>
+        </div>
+        
+        <div id="route-info" aria-live="polite"></div>
+        
+        <div id="map" class="map" aria-label="Mapa interactivo"></div>
+        
+        <div id="history-container" class="history-container" style="display: none;">
+            <h3>Historial de Rutas</h3>
+            <ul id="history-list" aria-label="Lista de rutas buscadas"></ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ol@latest/dist/ol.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // Función para alternar el menú
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const checkbox = document.getElementById('checkbox');
+            
+            checkbox.checked = !checkbox.checked;
+            sidebar.classList.toggle('active');
+        }
+
+        // Evento para el toggle del menú
+        document.querySelector('.toggle').addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>
